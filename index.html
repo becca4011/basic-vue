@@ -13,6 +13,11 @@
     <div id="app">
         <!-- Vue 안의 name을 덮어씌움 -->
         {{ nextYear('안녕하세요') }}
+
+        <!-- [바인딩] v-bind:속성 = "데이터" -->
+        <!-- v-bind 생략 가능 -->
+        <input :type="type" :value="inputData">
+        <a :href="getNaverLink()">네이버</a>
     </div>
     <script>
         // vue 인스턴스 생성
@@ -22,9 +27,15 @@
                 person: {
                     name: '이름',
                     age: 22
-                }
+                },
+                inputData: 'hello',
+                type: 'text',
+                link: 'https://www.naver.com'
             },
             methods: {
+                getNaverLink() {
+                    return this.link;
+                },
                 // nextYear: function(greeting) 을 줄여서 사용 가능
                 nextYear(greeting) {
                     return greeting + '! ' + this.person.name + '은 내년에 ' + (this.person.age + 1) + '살 입니다.';
