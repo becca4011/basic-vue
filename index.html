@@ -11,38 +11,30 @@
 
 <body>
     <div id="app">
-        <!-- Vue 안의 name을 덮어씌움 -->
-        {{ nextYear('안녕하세요') }}
-
-        <!-- [바인딩] v-bind:속성 = "데이터" -->
-        <!-- v-bind 생략 가능 -->
-        <input :type="type" :value="inputData">
-        <a :href="getNaverLink()">네이버</a>
+        <!-- [이벤트] v-on:~~~ -->
+        <!-- [이벤트 수식어] .prevent(페이지 로드 금지), ... 공식문서 이벤트 핸들링 참고 -->
+        <form v-on:submit.prevent="submit">
+            <input type="text"><br>
+            <button type="submit">Submit</button>
+        </form>
     </div>
     <script>
         // vue 인스턴스 생성
         new Vue({
             el: '#app',
             data: {
-                person: {
-                    name: '이름',
-                    age: 22
-                },
-                inputData: 'hello',
-                type: 'text',
-                link: 'https://www.naver.com'
+                year: 2021
             },
             methods: {
-                getNaverLink() {
-                    return this.link;
+                plus() {
+                    this.year++;
                 },
-                // nextYear: function(greeting) 을 줄여서 사용 가능
-                nextYear(greeting) {
-                    return greeting + '! ' + this.person.name + '은 내년에 ' + (this.person.age + 1) + '살 입니다.';
-                    // vue.js에서 data 안에 있는 것을 this에 넣어주기 때문에 this.data.person.name를 쓰지 않아도 됨
+                minus() {
+                    this.year--;
                 },
-                otherMethod: function () {
-                    this.nextYear();
+                submit() {
+                    alert('submitted');
+                    console.log('hello');
                 }
             }
         })
