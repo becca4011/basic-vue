@@ -11,10 +11,12 @@
 
 <body>
     <div id="app">
-        <!-- [이벤트] v-on:~~~ -->
+        <!-- [이벤트] v-on:~~~ == @ -->
         <!-- [이벤트 수식어] .prevent(페이지 로드 금지), ... 공식문서 이벤트 핸들링 참고 -->
         <form v-on:submit.prevent="submit">
-            <input type="text"><br>
+            <!-- <input type="text" :value="text" @keyup="updateText"><br> -->
+            <input type="text" v-model="text"><br> <!-- [양방향 바인딩] v-model -->
+            {{ text }}<br>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -23,7 +25,8 @@
         new Vue({
             el: '#app',
             data: {
-                year: 2021
+                year: 2021,
+                text: 'text'
             },
             methods: {
                 plus() {
@@ -35,7 +38,11 @@
                 submit() {
                     alert('submitted');
                     console.log('hello');
-                }
+                },
+                //updateText(event) {
+                // event는 KeybordEvent (keyup에서 넣어줌)
+                //    this.text = event.target.value;
+                //}
             }
         })
     </script>
