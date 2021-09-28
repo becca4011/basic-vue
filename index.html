@@ -11,18 +11,17 @@
 
 <body>
     <div id="app">
-        <!-- 괄호 없이 사용 가능 -->
-        <button @click="changeMessage">Change</button>
-        {{ reverseMessage }}
-        {{ reverseMessage }}
-        {{ reverseMessage }}
+        {{ message }}<br>
+        <button @click="changeMessage">Change</button><br>
+        {{ updated }}
     </div>
     <script>
         // vue 인스턴스 생성
         new Vue({
             el: '#app',
             data: {
-                message: 'hello'
+                message: 'hello',
+                updated: 'no'
             },
             methods: {
                 // [methods] 위에서 사용하면 그 때마다 계산해서 리턴
@@ -37,6 +36,13 @@
                 // [computed] 처음에 한 번 계산해서 저장해놓은 것(캐싱)을 리턴
                 reverseMessage() {
                     return this.message.split('').reverse().join('')
+                }
+            },
+            watch: {
+                // [watch] 감시하고 싶은 데이터를 적으면, 새로 업데이트 된 것과 업데이트 전의 것을 받음
+                message(newVal, oldVal) {
+                    console.log(newVal, oldVal)
+                    this.updated = 'yes'
                 }
             }
         })
