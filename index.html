@@ -6,43 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뷰 기초 익히기</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- vue 사용 -->
 </head>
 
 <body>
     <div id="app">
-        {{ message }}<br>
-        <button @click="changeMessage">Change</button><br>
-        {{ updated }}
+        <!-- 클래스 바인딩 -->
+        <!-- 이름에 -가 있는 경우, ''로 묶어주어야 함 -->
+        <!-- <div :class="{ red: isRed, 'font-bold': isBold }">Hello</div> -->
+
+        <!-- 스타일 바인딩 -->
+        <!-- fontSize는 -가 아닌, 대문자를 적어주어야 함 -->
+        <div :style="{ color: red, fontSize: size }">Hello</div>
+        <button @click="update">Click</button>
     </div>
     <script>
         // vue 인스턴스 생성
         new Vue({
             el: '#app',
             data: {
-                message: 'hello',
-                updated: 'no'
+                // isRed: false,
+                // isBold: false
+                red: 'red',
+                size: '30px'
             },
             methods: {
-                // [methods] 위에서 사용하면 그 때마다 계산해서 리턴
-                // reverseMessage() {
-                //     return this.message.split('').reverse().join('')
-                // }
-                changeMessage() {
-                    this.message = '안녕하세요'
-                }
-            },
-            computed: {
-                // [computed] 처음에 한 번 계산해서 저장해놓은 것(캐싱)을 리턴
-                reverseMessage() {
-                    return this.message.split('').reverse().join('')
-                }
-            },
-            watch: {
-                // [watch] 감시하고 싶은 데이터를 적으면, 새로 업데이트 된 것과 업데이트 전의 것을 받음
-                message(newVal, oldVal) {
-                    console.log(newVal, oldVal)
-                    this.updated = 'yes'
+                update() {
+                    this.isRed = !this.isRed;
+                    this.isBold = !this.isBold;
                 }
             }
         })
