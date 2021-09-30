@@ -20,29 +20,37 @@
 
 <body>
     <div id="app">
-        <!-- 클래스 바인딩 -->
-        <!-- 이름에 -가 있는 경우, ''로 묶어주어야 함 -->
-        <!-- <div :class="{ red: isRed, 'font-bold': isBold }">Hello</div> -->
+        <!-- [v-if, v-else-if, v-else] 조건문 / 초기 조건에 따라 렌더링 (토글 비용 ↑) -->
+        <!-- [template] 조건문을 한꺼번에 적용하고 싶을 때 사용 -->
+        <!-- <template v-if="number === 1">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </template>
+        <div v-else-if="number === 2">Hi</div>
+        <div v-if="show">Yes</div>
+        <div v-else="show">No</div> -->
 
-        <!-- 스타일 바인딩 -->
-        <!-- fontSize는 -가 아닌, 대문자를 적어주어야 함 -->
-        <div :style="{ color: red, fontSize: size }">Hello</div>
-        <button @click="update">Click</button>
+        <!-- [v-show] 초기 조건에 관계 없이 항상 렌더링 (초기 렌더링 비용 ↑) -->
+        <div v-show="show">Yes</div><br>
+        <button @click="toggle">Toggle</button>
+
+        <!-- 자주 바뀌면 v-show, 조건이 바뀌지 않으면 v-if 사용 -->
     </div>
     <script>
         // vue 인스턴스 생성
         new Vue({
             el: '#app',
             data: {
-                // isRed: false,
-                // isBold: false
-                red: 'red',
-                size: '30px'
+                number: 1,
+                show: false
             },
             methods: {
-                update() {
-                    this.isRed = !this.isRed;
-                    this.isBold = !this.isBold;
+                increase() {
+                    this.number++
+                },
+                toggle() {
+                    this.show = !this.show
                 }
             }
         })
