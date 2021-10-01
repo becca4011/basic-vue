@@ -20,38 +20,27 @@
 
 <body>
     <div id="app">
-        <!-- [v-if, v-else-if, v-else] 조건문 / 초기 조건에 따라 렌더링 (토글 비용 ↑) -->
-        <!-- [template] 조건문을 한꺼번에 적용하고 싶을 때 사용 -->
-        <!-- <template v-if="number === 1">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-        </template>
-        <div v-else-if="number === 2">Hi</div>
-        <div v-if="show">Yes</div>
-        <div v-else="show">No</div> -->
-
-        <!-- [v-show] 초기 조건에 관계 없이 항상 렌더링 (초기 렌더링 비용 ↑) -->
-        <div v-show="show">Yes</div><br>
-        <button @click="toggle">Toggle</button>
-
-        <!-- 자주 바뀌면 v-show, 조건이 바뀌지 않으면 v-if 사용 -->
+        <!-- [v-for] 반복문 (people 안의 데이터가 person에 들어감) -->
+        <!-- index : 인덱스 (마지막에 넣기) -->
+        <!-- key : 유일한 값이여야 함 (중복 X / 반드시 넣기 / key에 index를 넣으면, 데이터가 지워지면 index가 바뀌기 때문에 좋지 않음) -->
+        <div v-for="(person, index) in people" :key="person.id">
+            {{ person.name }} {{ person.age }} {{ index }}
+        </div>
     </div>
     <script>
         // vue 인스턴스 생성
         new Vue({
             el: '#app',
             data: {
-                number: 1,
-                show: false
+                people: [
+                    { id: 1, name: 'a', age: 20 },
+                    { id: 2, name: 'b', age: 21 },
+                    { id: 3, name: 'c', age: 22 },
+                    { id: 4, name: 'd', age: 23 },
+                ]
             },
             methods: {
-                increase() {
-                    this.number++
-                },
-                toggle() {
-                    this.show = !this.show
-                }
+
             }
         })
     </script>
