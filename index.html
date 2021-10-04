@@ -6,41 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뷰 기초 익히기</title>
-    <style>
-        .red {
-            color: red;
-        }
-
-        .font-bold {
-            font-weight: bold;
-        }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- vue 사용 -->
 </head>
 
 <body>
     <div id="app">
-        <!-- [v-for] 반복문 (people 안의 데이터가 person에 들어감) -->
-        <!-- index : 인덱스 (마지막에 넣기) -->
-        <!-- key : 유일한 값이여야 함 (중복 X / 반드시 넣기 / key에 index를 넣으면, 데이터가 지워지면 index가 바뀌기 때문에 좋지 않음) -->
-        <div v-for="(person, index) in people" :key="person.id">
-            {{ person.name }} {{ person.age }} {{ index }}
-        </div>
+        {{ name }}<br>
+        <button @click="changeText">Click</button>
+    </div>
+    <div id="app-1">
+        {{ name }}<br>
+        <button @click="changeText">Click</button>
     </div>
     <script>
         // vue 인스턴스 생성
-        new Vue({
+        const app = new Vue({
             el: '#app',
             data: {
-                people: [
-                    { id: 1, name: 'a', age: 20 },
-                    { id: 2, name: 'b', age: 21 },
-                    { id: 3, name: 'c', age: 22 },
-                    { id: 4, name: 'd', age: 23 },
-                ]
+                name: 'becca'
             },
             methods: {
+                changeText() {
+                    //this.name = 'becca updated'
+                    app1.name = 'becca updated' // 다른 인스턴스의 이름을 바꿀 수 있음
+                }
+            }
+        })
 
+        // vue 인스턴스는 여러 개 생성 가능
+        const app1 = new Vue({
+            el: '#app-1',
+            data: {
+                name: 'becca1'
+            },
+            methods: {
+                changeText() {
+                    //this.name = 'becca1 updated'
+                    app.name = 'becca1 updated'
+                }
             }
         })
     </script>
