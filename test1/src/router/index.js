@@ -4,11 +4,12 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
+// 라우터 설정
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/', // 주소
+    name: 'Home', // 페이지 이름
+    component: Home // 컴포넌트 (views 안에 있음)
   },
   {
     path: '/about',
