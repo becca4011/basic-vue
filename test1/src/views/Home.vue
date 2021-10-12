@@ -1,18 +1,26 @@
+<!-- HTML 코드가 들어갈 곳 -->
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>This is Home Page</h1>
+    <Becca />
   </div>
 </template>
 
+<!-- 데이터, 메소드 등 배웠던 것이 들어갈 곳 -->
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Becca from "@/components/Becca.vue"; // import를 하면 사용 가능
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
-  }
-}
+    Becca,
+  },
+};
 </script>
+
+<!-- HTML 스타일이 들어갈 곳 -->
+<!-- scoped : 이 HTML 페이지에만 적용 (쓰지 않으면 전체에 적용됨) -->
+<style scoped>
+h1 {
+  color: #42b983;
+}
+</style>
