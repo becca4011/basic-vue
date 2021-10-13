@@ -2,7 +2,9 @@
 <template>
   <div>
     <h1>This is Home Page</h1>
-    <Becca />
+
+    <!-- props -->
+    <Becca title="Home Title" name="Becca" />
   </div>
 </template>
 
